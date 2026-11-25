@@ -1,9 +1,8 @@
 # Create, modify, and delete columns
 
 These are methods for the dplyr
-[`dplyr::mutate()`](https://dplyr.tidyverse.org/reference/mutate.html)
-and
-[`dplyr::transmute()`](https://dplyr.tidyverse.org/reference/transmute.html)
+[`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) and
+[`transmute()`](https://dplyr.tidyverse.org/reference/transmute.html)
 generics. They are translated to computed expressions in the `SELECT`
 clause of the SQL query.
 
@@ -49,15 +48,14 @@ mutate(
 
   \<[`data-masking`](https://rlang.r-lib.org/reference/args_data_masking.html)\>
   A selection of columns to control ordering for window functions within
-  this
-  [`dplyr::mutate()`](https://dplyr.tidyverse.org/reference/mutate.html)
+  this [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html)
   call. Use [`c()`](https://rdrr.io/r/base/c.html) to order by multiple
   columns, e.g. `.order = c(x, y)`. Each column can be wrapped in
-  [`dplyr::desc()`](https://dplyr.tidyverse.org/reference/desc.html) to
-  specify descending order. Equivalent to calling
+  [`desc()`](https://dplyr.tidyverse.org/reference/desc.html) to specify
+  descending order. Equivalent to calling
   [`window_order()`](https://dbplyr.tidyverse.org/dev/reference/window_order.md)
   before and clearing it after the
-  [`dplyr::mutate()`](https://dplyr.tidyverse.org/reference/mutate.html).
+  [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html).
 
 - .frame:
 
@@ -68,7 +66,7 @@ mutate(
   calling
   [`window_frame()`](https://dbplyr.tidyverse.org/dev/reference/window_order.md)
   before and clearing it after the
-  [`dplyr::mutate()`](https://dplyr.tidyverse.org/reference/mutate.html).
+  [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html).
 
 - .keep:
 
@@ -115,7 +113,7 @@ db |>
   show_query()
 #> <SQL>
 #> SELECT *, (`x` + `y`) / 2.0 AS `a`, SQRT((POWER(`x`, 2)) + POWER(`y`, 2)) AS `b`
-#> FROM `dbplyr_tmp_6Ojtgl00si`
+#> FROM `dbplyr_tmp_LBw8zKN1yQ`
 
 # dbplyr automatically creates subqueries as needed
 db |>
@@ -125,7 +123,7 @@ db |>
 #> SELECT *, `x1` * 2.0 AS `x2`
 #> FROM (
 #>   SELECT *, `x` + 1.0 AS `x1`
-#>   FROM `dbplyr_tmp_6Ojtgl00si`
+#>   FROM `dbplyr_tmp_LBw8zKN1yQ`
 #> ) AS `q01`
 
 # `.order` and `.frame` control window functions
@@ -140,5 +138,5 @@ db |>
 #> SELECT
 #>   *,
 #>   SUM(`x`) OVER (PARTITION BY `g` ORDER BY `x` ROWS BETWEEN 2 PRECEDING AND 2 FOLLOWING) AS `rolling_sum`
-#> FROM `dbplyr_tmp_lBpEtJTVTw`
+#> FROM `dbplyr_tmp_l623TKpjGw`
 ```

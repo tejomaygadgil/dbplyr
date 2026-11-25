@@ -1,7 +1,7 @@
 # Group by one or more variables
 
 This is a method for the dplyr
-[`dplyr::group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)
+[`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)
 generic. It is translated to the `GROUP BY` clause of the SQL query when
 used with
 [`summarise()`](https://dbplyr.tidyverse.org/dev/reference/summarise.tbl_lazy.md)
@@ -51,7 +51,7 @@ db |>
   show_query()
 #> <SQL>
 #> SELECT `g`, COUNT(*) AS `n()`
-#> FROM `dbplyr_tmp_kFTvzIEFYG`
+#> FROM `dbplyr_tmp_8mT77KhL68`
 #> GROUP BY `g`
 
 db |>
@@ -60,5 +60,5 @@ db |>
   show_query()
 #> <SQL>
 #> SELECT *, `x` / SUM(`x`) OVER (PARTITION BY `g`) AS `x2`
-#> FROM `dbplyr_tmp_kFTvzIEFYG`
+#> FROM `dbplyr_tmp_8mT77KhL68`
 ```

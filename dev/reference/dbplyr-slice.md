@@ -1,10 +1,9 @@
 # Subset rows using their positions
 
 These are methods for the dplyr generics
-[`dplyr::slice_min()`](https://dplyr.tidyverse.org/reference/slice.html),
-[`dplyr::slice_max()`](https://dplyr.tidyverse.org/reference/slice.html),
-and
-[`dplyr::slice_sample()`](https://dplyr.tidyverse.org/reference/slice.html).
+[`slice_min()`](https://dplyr.tidyverse.org/reference/slice.html),
+[`slice_max()`](https://dplyr.tidyverse.org/reference/slice.html), and
+[`slice_sample()`](https://dplyr.tidyverse.org/reference/slice.html).
 They are translated to SQL using
 [`dplyr::filter()`](https://dplyr.tidyverse.org/reference/filter.html)
 and window functions (`ROWNUMBER`, `MIN_RANK`, or `CUME_DIST` depending
@@ -114,7 +113,7 @@ db |> slice_min(x) |> show_query()
 #>     CASE
 #> WHEN (NOT((`x` IS NULL))) THEN RANK() OVER (PARTITION BY (CASE WHEN ((`x` IS NULL)) THEN 1 ELSE 0 END) ORDER BY `x`)
 #> END AS `col01`
-#>   FROM `dbplyr_tmp_SHwmYEz3cq`
+#>   FROM `dbplyr_tmp_w7oQFtAa74`
 #> ) AS `q01`
 #> WHERE (`col01` <= 1)
 db |> slice_max(x) |> show_query()
@@ -126,7 +125,7 @@ db |> slice_max(x) |> show_query()
 #>     CASE
 #> WHEN (NOT((`x` IS NULL))) THEN RANK() OVER (PARTITION BY (CASE WHEN ((`x` IS NULL)) THEN 1 ELSE 0 END) ORDER BY `x` DESC)
 #> END AS `col01`
-#>   FROM `dbplyr_tmp_SHwmYEz3cq`
+#>   FROM `dbplyr_tmp_w7oQFtAa74`
 #> ) AS `q01`
 #> WHERE (`col01` <= 1)
 db |> slice_sample() |> show_query()
@@ -141,7 +140,7 @@ db |> slice_sample() |> show_query()
 #> ELSE 0
 #> END) ORDER BY (0.5 + RANDOM() / 18446744073709551616.0))
 #> END AS `col01`
-#>   FROM `dbplyr_tmp_SHwmYEz3cq`
+#>   FROM `dbplyr_tmp_w7oQFtAa74`
 #> ) AS `q01`
 #> WHERE (`col01` <= 1)
 
@@ -154,7 +153,7 @@ db |> group_by(y) |> slice_min(x) |> show_query()
 #>     CASE
 #> WHEN (NOT((`x` IS NULL))) THEN RANK() OVER (PARTITION BY `y`, (CASE WHEN ((`x` IS NULL)) THEN 1 ELSE 0 END) ORDER BY `x`)
 #> END AS `col01`
-#>   FROM `dbplyr_tmp_SHwmYEz3cq`
+#>   FROM `dbplyr_tmp_w7oQFtAa74`
 #> ) AS `q01`
 #> WHERE (`col01` <= 1)
 
@@ -162,14 +161,14 @@ db |> group_by(y) |> slice_min(x) |> show_query()
 # than you expect
 db |> slice_min(y, n = 1)
 #> # A query:  ?? x 2
-#> # Database: sqlite 3.51.2 [:memory:]
+#> # Database: sqlite 3.53.3 [:memory:]
 #>       x     y
 #>   <int> <dbl>
 #> 1     1     1
 #> 2     2     1
 db |> slice_min(y, n = 1, with_ties = FALSE)
 #> # A query:  ?? x 2
-#> # Database: sqlite 3.51.2 [:memory:]
+#> # Database: sqlite 3.53.3 [:memory:]
 #>       x     y
 #>   <int> <dbl>
 #> 1     1     1
@@ -177,7 +176,7 @@ db |> slice_min(y, n = 1, with_ties = FALSE)
 # Non-integer group sizes are rounded down
 db |> slice_min(x, prop = 0.5)
 #> # A query:  ?? x 2
-#> # Database: sqlite 3.51.2 [:memory:]
+#> # Database: sqlite 3.53.3 [:memory:]
 #>       x     y
 #>   <int> <dbl>
 #> 1     1     1

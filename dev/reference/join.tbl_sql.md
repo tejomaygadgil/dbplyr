@@ -1,7 +1,7 @@
 # Join SQL tables
 
 These are methods for the dplyr
-[dplyr::join](https://dplyr.tidyverse.org/reference/mutate-joins.html)
+[join](https://dplyr.tidyverse.org/reference/mutate-joins.html)
 generics. They are translated to the following SQL queries:
 
 - `inner_join(x, y)`: `SELECT * FROM x JOIN y ON x.a = y.a`
@@ -197,7 +197,7 @@ anti_join(
 
   - `"inline"`: `y` will be inlined into the query using
     [`copy_inline()`](https://dbplyr.tidyverse.org/dev/reference/copy_inline.md).
-    This is should faster for small datasets and doesn't require write
+    This should be faster for small datasets and doesn't require write
     access.
 
   `TRUE` (`"temp-table"`) and `FALSE` (`"none"`) are also accepted for
@@ -232,8 +232,7 @@ anti_join(
   Should NA (NULL) values match one another? The default, "never", is
   how databases usually work. `"na"` makes the joins behave like the
   dplyr join functions, [`merge()`](https://rdrr.io/r/base/merge.html),
-  [`bit64::match()`](https://rdrr.io/pkg/bit64/man/bit64S3.html), and
-  `%in%`.
+  [`base::match()`](https://rdrr.io/r/base/match.html), and `%in%`.
 
 - multiple, unmatched:
 
@@ -247,9 +246,9 @@ anti_join(
 - sql_on:
 
   A custom join predicate as an SQL expression. Usually joins use column
-  equality, but you can perform more complex queries by supply `sql_on`
-  which should be a SQL expression that uses `LHS` and `RHS` aliases to
-  refer to the left-hand side or right-hand side of the join
+  equality, but you can perform more complex queries by supplying
+  `sql_on` which should be a SQL expression that uses `LHS` and `RHS`
+  aliases to refer to the left-hand side or right-hand side of the join
   respectively.
 
 - auto_index:
@@ -289,7 +288,7 @@ band_db |>
   left_join(dplyr::band_instruments, copy = TRUE)
 #> Joining with `by = join_by(name)`
 #> # A query:  ?? x 3
-#> # Database: sqlite 3.51.2 [:memory:]
+#> # Database: sqlite 3.53.3 [:memory:]
 #>   name  band    plays 
 #>   <chr> <chr>   <chr> 
 #> 1 Mick  Stones  NA    
@@ -301,7 +300,7 @@ db <- memdb_frame(x = c(1, 2, NA))
 label <- memdb_frame(x = c(1, NA), label = c("one", "missing"))
 db |> left_join(label, by = "x")
 #> # A query:  ?? x 2
-#> # Database: sqlite 3.51.2 [:memory:]
+#> # Database: sqlite 3.53.3 [:memory:]
 #>       x label
 #>   <dbl> <chr>
 #> 1     1 one  
@@ -310,7 +309,7 @@ db |> left_join(label, by = "x")
 # But you can activate R's usual behaviour with the na_matches argument
 db |> left_join(label, by = "x", na_matches = "na")
 #> # A query:  ?? x 2
-#> # Database: sqlite 3.51.2 [:memory:]
+#> # Database: sqlite 3.53.3 [:memory:]
 #>       x label  
 #>   <dbl> <chr>  
 #> 1     1 one    
@@ -324,14 +323,14 @@ db2 <- memdb_frame(x = 1:3, y = letters[1:3])
 db1 |> left_join(db2) |> show_query()
 #> Joining with `by = join_by(x)`
 #> <SQL>
-#> SELECT `dbplyr_tmp_AnL54XlxBL`.`x` AS `x`, `y`
-#> FROM `dbplyr_tmp_AnL54XlxBL`
-#> LEFT JOIN `dbplyr_tmp_9HzOkF05UK`
-#>   ON (`dbplyr_tmp_AnL54XlxBL`.`x` = `dbplyr_tmp_9HzOkF05UK`.`x`)
+#> SELECT `dbplyr_tmp_srAteYGaUs`.`x` AS `x`, `y`
+#> FROM `dbplyr_tmp_srAteYGaUs`
+#> LEFT JOIN `dbplyr_tmp_sBTMwgonEI`
+#>   ON (`dbplyr_tmp_srAteYGaUs`.`x` = `dbplyr_tmp_sBTMwgonEI`.`x`)
 db1 |> left_join(db2, sql_on = "LHS.x < RHS.x") |> show_query()
 #> <SQL>
 #> SELECT `LHS`.`x` AS `x.x`, `RHS`.`x` AS `x.y`, `y`
-#> FROM `dbplyr_tmp_AnL54XlxBL` AS `LHS`
-#> LEFT JOIN `dbplyr_tmp_9HzOkF05UK` AS `RHS`
+#> FROM `dbplyr_tmp_srAteYGaUs` AS `LHS`
+#> LEFT JOIN `dbplyr_tmp_sBTMwgonEI` AS `RHS`
 #>   ON (LHS.x < RHS.x)
 ```

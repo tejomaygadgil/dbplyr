@@ -1,13 +1,12 @@
 # Edit individual rows in the underlying database table
 
 These are methods for the dplyr
-[`dplyr::rows_insert()`](https://dplyr.tidyverse.org/reference/rows.html),
-[`dplyr::rows_append()`](https://dplyr.tidyverse.org/reference/rows.html),
-[`dplyr::rows_update()`](https://dplyr.tidyverse.org/reference/rows.html),
-[`dplyr::rows_patch()`](https://dplyr.tidyverse.org/reference/rows.html),
-[`dplyr::rows_upsert()`](https://dplyr.tidyverse.org/reference/rows.html),
-and
-[`dplyr::rows_delete()`](https://dplyr.tidyverse.org/reference/rows.html)
+[`rows_insert()`](https://dplyr.tidyverse.org/reference/rows.html),
+[`rows_append()`](https://dplyr.tidyverse.org/reference/rows.html),
+[`rows_update()`](https://dplyr.tidyverse.org/reference/rows.html),
+[`rows_patch()`](https://dplyr.tidyverse.org/reference/rows.html),
+[`rows_upsert()`](https://dplyr.tidyverse.org/reference/rows.html), and
+[`rows_delete()`](https://dplyr.tidyverse.org/reference/rows.html)
 generics.
 
 When `in_place = TRUE` these verbs do not generate `SELECT` queries, but
@@ -93,10 +92,9 @@ rows_delete(
 - x:
 
   A lazy table. For `in_place = TRUE`, this must be a table instantiated
-  with [`dplyr::tbl()`](https://dplyr.tidyverse.org/reference/tbl.html)
-  or
-  [`dplyr::compute()`](https://dplyr.tidyverse.org/reference/compute.html),
-  not to a lazy query. The
+  with [`tbl()`](https://dplyr.tidyverse.org/reference/tbl.html) or
+  [`compute()`](https://dplyr.tidyverse.org/reference/compute.html), not
+  to a lazy query. The
   [`remote_name()`](https://dbplyr.tidyverse.org/dev/reference/remote_name.md)
   function is used to determine the name of the table to be updated.
 
@@ -153,7 +151,7 @@ rows_delete(
 
   - `"inline"`: `y` will be inlined into the query using
     [`copy_inline()`](https://dbplyr.tidyverse.org/dev/reference/copy_inline.md).
-    This is should faster for small datasets and doesn't require write
+    This should be faster for small datasets and doesn't require write
     access.
 
   `TRUE` (`"temp-table"`) and `FALSE` (`"none"`) are also accepted for
@@ -227,14 +225,14 @@ applejack <- copy_inline(con, data.frame(
 rows_insert(ponies, applejack, conflict = "ignore")
 #> Matching, by = "name"
 #> # A query:  ?? x 3
-#> # Database: sqlite 3.51.2 [:memory:]
+#> # Database: sqlite 3.53.3 [:memory:]
 #>   id    name       cutie_mark  
 #>   <lgl> <chr>      <chr>       
 #> 1 NA    Apple Jack three apples
 # And the original table is left unchanged:
 ponies
 #> # A query:  ?? x 3
-#> # Database: sqlite 3.51.2 [:memory:]
+#> # Database: sqlite 3.53.3 [:memory:]
 #> # ℹ 3 variables: id <int>, name <chr>, cutie_mark <chr>
 
 # You can also choose to modify the table with in_place = TRUE:
@@ -244,7 +242,7 @@ rows_insert(ponies, applejack, conflict = "ignore", in_place = TRUE)
 # data is modified
 ponies
 #> # A query:  ?? x 3
-#> # Database: sqlite 3.51.2 [:memory:]
+#> # Database: sqlite 3.53.3 [:memory:]
 #>      id name       cutie_mark  
 #>   <int> <chr>      <chr>       
 #> 1     1 Apple Jack three apples

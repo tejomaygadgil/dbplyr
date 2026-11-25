@@ -2,8 +2,8 @@
 
 A 'dplyr' back end for databases that allows you to work with remote
 database tables as if they are in-memory data frames. Basic features
-works with any database that has a 'DBI' back end; more advanced
-features require 'SQL' translation to be provided by the package author.
+work with any database that has a 'DBI' back end; more advanced features
+require 'SQL' translation to be provided by the package author.
 
 ## See also
 
@@ -20,6 +20,8 @@ Useful links:
 **Maintainer**: Hadley Wickham <hadley@posit.co>
 
 Authors:
+
+- Hadley Wickham <hadley@posit.co>
 
 - Maximilian Girlich
 

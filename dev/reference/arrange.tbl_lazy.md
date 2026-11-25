@@ -1,7 +1,7 @@
 # Arrange rows by column values
 
 This is an method for the dplyr
-[`dplyr::arrange()`](https://dplyr.tidyverse.org/reference/arrange.html)
+[`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html)
 generic. It generates the `ORDER BY` clause of the SQL query. It also
 affects the
 [`window_order()`](https://dbplyr.tidyverse.org/dev/reference/window_order.md)
@@ -60,13 +60,13 @@ db <- memdb_frame(a = c(3, 4, 1, 2), b = c(5, 1, 2, NA))
 db |> arrange(a) |> show_query()
 #> <SQL>
 #> SELECT *
-#> FROM `dbplyr_tmp_lKLUUEdLie`
+#> FROM `dbplyr_tmp_SwlKLUUEdL`
 #> ORDER BY `a`
 
 # Note that NAs are sorted first
 db |> arrange(b)
 #> # A query:    ?? x 2
-#> # Database:   sqlite 3.51.2 [:memory:]
+#> # Database:   sqlite 3.53.3 [:memory:]
 #> # Ordered by: b
 #>       a     b
 #>   <dbl> <dbl>
@@ -77,7 +77,7 @@ db |> arrange(b)
 # override by sorting on is.na() first
 db |> arrange(is.na(b), b)
 #> # A query:    ?? x 2
-#> # Database:   sqlite 3.51.2 [:memory:]
+#> # Database:   sqlite 3.53.3 [:memory:]
 #> # Ordered by: is.na(b), b
 #>       a     b
 #>   <dbl> <dbl>

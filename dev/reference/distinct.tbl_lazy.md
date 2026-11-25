@@ -1,7 +1,7 @@
 # Subset distinct/unique rows
 
 This is a method for the dplyr
-[`dplyr::distinct()`](https://dplyr.tidyverse.org/reference/distinct.html)
+[`distinct()`](https://dplyr.tidyverse.org/reference/distinct.html)
 generic. It adds the `DISTINCT` clause to the SQL query.
 
 ## Usage
@@ -46,9 +46,9 @@ db <- memdb_frame(x = c(1, 1, 2, 2), y = c(1, 2, 1, 1))
 db |> distinct() |> show_query()
 #> <SQL>
 #> SELECT DISTINCT *
-#> FROM `dbplyr_tmp_oeBlLyCUBq`
+#> FROM `dbplyr_tmp_YEz3cqGOVP`
 db |> distinct(x) |> show_query()
 #> <SQL>
 #> SELECT DISTINCT `x`
-#> FROM `dbplyr_tmp_oeBlLyCUBq`
+#> FROM `dbplyr_tmp_YEz3cqGOVP`
 ```

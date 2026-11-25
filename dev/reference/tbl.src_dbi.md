@@ -4,10 +4,10 @@ Use [`tbl()`](https://dplyr.tidyverse.org/reference/tbl.html) to create
 a SQL query backed by a database. Manipulating this object with dplyr
 verbs then builds up a SQL query that will only be executed when you
 explicitly ask for it, either by printing the object, calling
-[`dplyr::collect()`](https://dplyr.tidyverse.org/reference/compute.html)
-to bring the data back to R or calling
-[`dplyr::compute()`](https://dplyr.tidyverse.org/reference/compute.html)
-to create a new table in the database. You can see the query without
+[`collect()`](https://dplyr.tidyverse.org/reference/compute.html) to
+bring the data back to R or calling
+[`compute()`](https://dplyr.tidyverse.org/reference/compute.html) to
+create a new table in the database. You can see the query without
 executing it with
 [`show_query()`](https://dbplyr.tidyverse.org/dev/reference/show_query.md).
 
@@ -65,7 +65,7 @@ copy_to(con, mtcars)
 mtcars_db <- con |> tbl("mtcars")
 mtcars_db
 #> # A query:  ?? x 11
-#> # Database: sqlite 3.51.2 [:memory:]
+#> # Database: sqlite 3.53.3 [:memory:]
 #>      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 #>    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
 #>  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
@@ -83,7 +83,7 @@ mtcars_db
 # Use `I()` for qualified table names
 con |> tbl(I("temp.mtcars")) |> head(1)
 #> # A query:  ?? x 11
-#> # Database: sqlite 3.51.2 [:memory:]
+#> # Database: sqlite 3.53.3 [:memory:]
 #>     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 #>   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
 #> 1    21     6   160   110   3.9  2.62  16.5     0     1     4     4
@@ -91,7 +91,7 @@ con |> tbl(I("temp.mtcars")) |> head(1)
 # You can also pass raw SQL if you want a more sophisticated query
 con |> tbl(sql("SELECT * FROM mtcars WHERE cyl = 8")) |> head(1)
 #> # A query:  ?? x 11
-#> # Database: sqlite 3.51.2 [:memory:]
+#> # Database: sqlite 3.53.3 [:memory:]
 #>     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 #>   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
 #> 1  18.7     8   360   175  3.15  3.44  17.0     0     0     3     2

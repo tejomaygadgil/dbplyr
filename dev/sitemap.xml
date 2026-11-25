@@ -1,4 +1,5 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://dbplyr.tidyverse.org/dev/AGENTS.html</loc></url>
 <url><loc>https://dbplyr.tidyverse.org/dev/CODE_OF_CONDUCT.html</loc></url>
 <url><loc>https://dbplyr.tidyverse.org/dev/CONTRIBUTING.html</loc></url>
 <url><loc>https://dbplyr.tidyverse.org/dev/LICENSE-text.html</loc></url>
@@ -16,7 +17,9 @@
 <url><loc>https://dbplyr.tidyverse.org/dev/reference/arrange.tbl_lazy.html</loc></url>
 <url><loc>https://dbplyr.tidyverse.org/dev/reference/as.sql.html</loc></url>
 <url><loc>https://dbplyr.tidyverse.org/dev/reference/backend-access.html</loc></url>
+<url><loc>https://dbplyr.tidyverse.org/dev/reference/backend-adbc.html</loc></url>
 <url><loc>https://dbplyr.tidyverse.org/dev/reference/backend-ansi.html</loc></url>
+<url><loc>https://dbplyr.tidyverse.org/dev/reference/backend-db2.html</loc></url>
 <url><loc>https://dbplyr.tidyverse.org/dev/reference/backend-hana.html</loc></url>
 <url><loc>https://dbplyr.tidyverse.org/dev/reference/backend-hive.html</loc></url>
 <url><loc>https://dbplyr.tidyverse.org/dev/reference/backend-impala.html</loc></url>

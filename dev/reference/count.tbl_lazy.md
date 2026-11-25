@@ -2,8 +2,8 @@
 
 These are methods for the dplyr
 [`dplyr::count()`](https://dplyr.tidyverse.org/reference/count.html) and
-[`dplyr::tally()`](https://dplyr.tidyverse.org/reference/count.html)
-generics. They wrap up
+[`tally()`](https://dplyr.tidyverse.org/reference/count.html) generics.
+They wrap up
 [`group_by.tbl_lazy()`](https://dbplyr.tidyverse.org/dev/reference/group_by.tbl_lazy.md),
 [`summarise.tbl_lazy()`](https://dbplyr.tidyverse.org/dev/reference/summarise.tbl_lazy.md)
 and, optionally,
@@ -70,17 +70,17 @@ db <- memdb_frame(g = c(1, 1, 1, 2, 2), x = c(4, 3, 6, 9, 2))
 db |> count(g) |> show_query()
 #> <SQL>
 #> SELECT `g`, COUNT(*) AS `n`
-#> FROM `dbplyr_tmp_DnH0KfYWxN`
+#> FROM `dbplyr_tmp_ZE6kU1N7gY`
 #> GROUP BY `g`
 db |> count(g, wt = x) |> show_query()
 #> <SQL>
 #> SELECT `g`, SUM(`x`) AS `n`
-#> FROM `dbplyr_tmp_DnH0KfYWxN`
+#> FROM `dbplyr_tmp_ZE6kU1N7gY`
 #> GROUP BY `g`
 db |> count(g, wt = x, sort = TRUE) |> show_query()
 #> <SQL>
 #> SELECT `g`, SUM(`x`) AS `n`
-#> FROM `dbplyr_tmp_DnH0KfYWxN`
+#> FROM `dbplyr_tmp_ZE6kU1N7gY`
 #> GROUP BY `g`
 #> ORDER BY `n` DESC
 ```

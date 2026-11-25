@@ -1,7 +1,7 @@
 # Summarise each group to one row
 
 This is a method for the dplyr
-[`dplyr::summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)
+[`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)
 generic. It generates the `SELECT` clause of the SQL query, and
 generally needs to be combined with
 [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html).
@@ -73,7 +73,7 @@ db |>
   show_query()
 #> <SQL>
 #> SELECT COUNT(*) AS `n()`
-#> FROM `dbplyr_tmp_K9MyP4tfaw`
+#> FROM `dbplyr_tmp_M0qZgIuB8y`
 
 db |>
   group_by(g) |>
@@ -81,6 +81,6 @@ db |>
   show_query()
 #> <SQL>
 #> SELECT `g`, COUNT(*) AS `n()`
-#> FROM `dbplyr_tmp_K9MyP4tfaw`
+#> FROM `dbplyr_tmp_M0qZgIuB8y`
 #> GROUP BY `g`
 ```

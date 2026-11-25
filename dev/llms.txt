@@ -16,6 +16,7 @@ and
 ## Installation
 
 ``` r
+
 # The easiest way to get dbplyr is to install the whole tidyverse:
 install.packages("tidyverse")
 
@@ -34,6 +35,7 @@ data frames. To demonstrate this I’ll first create an in-memory SQLite
 database and copy over a dataset:
 
 ``` r
+
 library(dplyr, warn.conflicts = FALSE)
 
 con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
@@ -52,10 +54,11 @@ Now you can retrieve a table using
 for more details). Printing it just retrieves the first few rows:
 
 ``` r
+
 mtcars2 <- tbl(con, "mtcars")
 mtcars2
-#> # Source:   table<`mtcars`> [?? x 11]
-#> # Database: sqlite 3.50.4 [:memory:]
+#> # A query:  ?? x 11
+#> # Database: sqlite 3.52.0 [:memory:]
 #>      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 #>    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
 #>  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
@@ -75,6 +78,7 @@ All dplyr calls are evaluated lazily, generating SQL that is only sent
 to the database when you request the data.
 
 ``` r
+
 # lazily generates query
 summary <- mtcars2 |> 
   group_by(cyl) |> 
@@ -140,7 +144,8 @@ contributing to this project, you agree to abide by its terms.
 - [`distinct(`*`<tbl_lazy>`*`)`](https://dbplyr.tidyverse.org/dev/reference/distinct.tbl_lazy.md)
   : Subset distinct/unique rows
 - [`filter(`*`<tbl_lazy>`*`)`](https://dbplyr.tidyverse.org/dev/reference/filter.tbl_lazy.md)
-  : Subset rows using column values
+  [`filter_out(`*`<tbl_lazy>`*`)`](https://dbplyr.tidyverse.org/dev/reference/filter.tbl_lazy.md)
+  : Keep or drop rows that match a condition
 - [`head(`*`<tbl_lazy>`*`)`](https://dbplyr.tidyverse.org/dev/reference/head.tbl_lazy.md)
   : Subset the first rows
 - [`slice_min(`*`<tbl_lazy>`*`)`](https://dbplyr.tidyverse.org/dev/reference/dbplyr-slice.md)
@@ -231,6 +236,10 @@ contributing to this project, you agree to abide by its terms.
 - [`dialect_access()`](https://dbplyr.tidyverse.org/dev/reference/backend-access.md)
   [`simulate_access()`](https://dbplyr.tidyverse.org/dev/reference/backend-access.md)
   : MS Access backend
+- [`backend-adbc`](https://dbplyr.tidyverse.org/dev/reference/backend-adbc.md)
+  : ADBC backend
+- [`dialect_db2()`](https://dbplyr.tidyverse.org/dev/reference/backend-db2.md)
+  : DB2 backend
 - [`dialect_hana()`](https://dbplyr.tidyverse.org/dev/reference/backend-hana.md)
   [`simulate_hana()`](https://dbplyr.tidyverse.org/dev/reference/backend-hana.md)
   : SAP HANA backend

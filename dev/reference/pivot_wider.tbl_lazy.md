@@ -111,11 +111,11 @@ dbplyr_pivot_wider_spec(
 - names_expand:
 
   Should the values in the `names_from` columns be expanded by
-  [`tidyr::expand()`](https://tidyr.tidyverse.org/reference/expand.html)
-  before pivoting? This results in more columns, the output will contain
-  column names corresponding to a complete expansion of all possible
-  values in `names_from`. Additionally, the column names will be sorted,
-  identical to what `names_sort` would produce.
+  [`expand()`](https://tidyr.tidyverse.org/reference/expand.html) before
+  pivoting? This results in more columns, the output will contain column
+  names corresponding to a complete expansion of all possible values in
+  `names_from`. Additionally, the column names will be sorted, identical
+  to what `names_sort` would produce.
 
 - names_repair:
 
@@ -237,7 +237,7 @@ memdb_frame(
     values_from = value
   )
 #> # A query:  ?? x 3
-#> # Database: sqlite 3.51.2 [:memory:]
+#> # Database: sqlite 3.53.3 [:memory:]
 #>      id     x     y
 #>   <dbl> <int> <int>
 #> 1     1     1     2
